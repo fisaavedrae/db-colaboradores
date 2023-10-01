@@ -1,8 +1,10 @@
 import { useState } from 'react'
-
+import { BaseColaboradores } from "./components/BaseColaboradores.js"
+import Listado from './components/Listado.jsx'
 import './App.css'
 
 function App() {
+  const [colaboradores, setColaboradores] = useState(BaseColaboradores)
 
   return (
     <>
@@ -14,26 +16,7 @@ function App() {
           <button id="boton-buscar" className="btn btn-warning"><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div className="container  border rounded" id="listado">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Cargo</th>
-                <th scope="col">Telefono</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Juan Soto</td>
-                <td>juan@gmail.com</td>
-                <td>23</td>
-                <td>Desarrollador FrontEnd</td>
-                <td>123456789</td>
-              </tr>
-            </tbody>
-          </table>
+          <Listado baseColaboradres={colaboradores} />
         </div>
         <div className="d-flex flex-column border rounded" id="agregar">
           <h2>Agregar colaborador</h2>
