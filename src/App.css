@@ -5,6 +5,7 @@
   --font-color: #000000;
   --font-input-color: #2F4550;
   --background-container: #F4F4F9;
+  --color-papelera: #B0413E;
 }
 
 body {
@@ -78,6 +79,14 @@ form {
 
 input {
   color: var(--font-input-color);
+}
+
+#borrar {
+  cursor: pointer;
+}
+
+#borrar:hover {
+  color: var(--color-papelera);
 }
 
 @media (width>520px) {
