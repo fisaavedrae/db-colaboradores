@@ -1,12 +1,7 @@
 import { useState } from 'react';
 
 const Listado = ({ baseColaboradres, elimina }) => {
-    console.log("Base colaboradres a mostrar en listado:", baseColaboradres)
-    const handleClick = () => {
-        console.log("Borrar:", e.target.id)
 
-
-    }
     return (
         <table className="table table-striped">
             <thead>

@@ -42,10 +42,16 @@ body {
 #busqueda {
   grid-area: n2;
   text-align: left;
+  width: 100%;
+  height: 80px;
+}
+
+#busqueda form {
+  width: 50%;
 }
 
 #busqueda input {
-  width: 30%;
+  width: 60%;
   margin-right: 20px;
 }
 

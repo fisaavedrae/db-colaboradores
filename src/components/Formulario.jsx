@@ -22,8 +22,6 @@ const Formulario = ({ onSubmit, setAlert }) => {
         }
         else {
             const nuevoColaborador = { "id": Date.now(), "nombre": nombre, "correo": correo, "edad": edad, "cargo": cargo, "telefono": telefono }
-            console.log("nuevo Colaborador: ", nuevoColaborador)
-
             setAlert({
                 error: false,
                 msg: "Colaborador agregado exitosamente !",

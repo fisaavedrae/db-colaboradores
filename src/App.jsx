@@ -4,24 +4,43 @@ import Titulo from './components/Titulo.jsx'
 import Listado from './components/Listado.jsx'
 import Formulario from './components/Formulario.jsx'
 import Alert from './components/Alert.jsx'
+import Buscador from './components/Buscador.jsx'
 import './App.css'
 
 function App() {
   const [colaboradores, setColaboradores] = useState(BaseColaboradores)
+  const [busquedaColaboradores, setbusquedaColaboradores] = useState(BaseColaboradores)
   const [alert, setAlert] = useState({
     error: false,
     msg: "",
     color: "success",
+    ingreso: false,
+    busqueda: false,
   })
 
   const enviarFormulario = (nuevoColaborador) => {
-    console.log("Valor de tarea recibido desde Formulario.jsx: ", nuevoColaborador)
-    console.log("nombre", nuevoColaborador.correo)
 
     setColaboradores([
       ...colaboradores,
       { id: obtenerId(), nombre: nuevoColaborador.nombre, correo: nuevoColaborador.correo, edad: nuevoColaborador.edad, cargo: nuevoColaborador.cargo, telefono: nuevoColaborador.telefono },
     ])
+    setbusquedaColaboradores(colaboradores)
+  }
+
+  const enviarFormularioBusqueda = (busqueda) => {
+    console.log("Valor de tarea recibido desde Buscador.jsx: ", busqueda)
+    console.log("Antes de busqueda: Estado Colaborador:", colaboradores)
+    console.log("Antes de busqueda: Estado Colaborador:", busquedaColaboradores)
+    setColaboradores(busquedaColaboradores)
+    if (busqueda) {
+      const resultadoBusqueda = colaboradores.filter(function (colaborador) {
+        return colaborador.nombre.indexOf(busqueda) > 0 || colaborador.correo.indexOf(busqueda) > 0 || colaborador.edad.indexOf(busqueda) > 0 || colaborador.cargo.indexOf(busqueda) > 0 || colaborador.telefono.indexOf(busqueda) > 0
+      }, busqueda)
+      console.log("Realizado busqueda: resultadoBusqueda de: " + busqueda + " Resultado: ", resultadoBusqueda)
+      setColaboradores([...resultadoBusqueda])
+    }
+    console.log("Despues de busqueda: Estado Colaborador:", colaboradores)
+    console.log("Despues de busqueda: Estado Colaborador:", busquedaColaboradores)
   }
 
   const eliminarColaborador = (colaborador) => {
@@ -41,9 +60,8 @@ function App() {
         <div className="container" id="titulo">
           <Titulo titulo="Lista de Colaboradores" />
         </div>
-        <div className="container" id="busqueda">
-          <input type="text" id="buscador" placeholder="Buscar un colaborador" />
-          <button id="boton-buscar" className="btn btn-warning"><i className="fa-solid fa-magnifying-glass"></i></button>
+        <div className="container d-flex flex-row" id="busqueda">
+          <Buscador onSubmit={enviarFormularioBusqueda} />
         </div>
         <div className="container  border rounded" id="listado">
           <Listado baseColaboradres={colaboradores} elimina={eliminarColaborador} />
