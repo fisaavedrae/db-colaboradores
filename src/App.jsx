@@ -14,12 +14,9 @@ function App() {
     error: false,
     msg: "",
     color: "success",
-    ingreso: false,
-    busqueda: false,
   })
 
   const enviarFormulario = (nuevoColaborador) => {
-
     setColaboradores([
       ...colaboradores,
       { id: obtenerId(), nombre: nuevoColaborador.nombre, correo: nuevoColaborador.correo, edad: nuevoColaborador.edad, cargo: nuevoColaborador.cargo, telefono: nuevoColaborador.telefono },
@@ -28,24 +25,23 @@ function App() {
   }
 
   const enviarFormularioBusqueda = (busqueda) => {
-    console.log("Valor de tarea recibido desde Buscador.jsx: ", busqueda)
-    console.log("Antes de busqueda: Estado Colaborador:", colaboradores)
-    console.log("Antes de busqueda: Estado Colaborador:", busquedaColaboradores)
+    setAlert("")
     setColaboradores(busquedaColaboradores)
-    if (busqueda) {
-      const resultadoBusqueda = colaboradores.filter(function (colaborador) {
-        return colaborador.nombre.indexOf(busqueda) > 0 || colaborador.correo.indexOf(busqueda) > 0 || colaborador.edad.indexOf(busqueda) > 0 || colaborador.cargo.indexOf(busqueda) > 0 || colaborador.telefono.indexOf(busqueda) > 0
-      }, busqueda)
-      console.log("Realizado busqueda: resultadoBusqueda de: " + busqueda + " Resultado: ", resultadoBusqueda)
-      setColaboradores([...resultadoBusqueda])
-    }
-    console.log("Despues de busqueda: Estado Colaborador:", colaboradores)
-    console.log("Despues de busqueda: Estado Colaborador:", busquedaColaboradores)
+    let textoBusqueda = ""
+
+    const resultadoBusqueda = busquedaColaboradores.filter(function (colaborador) {
+      textoBusqueda = colaborador.nombre.toUpperCase() + " " + colaborador.correo.toUpperCase() + " " + colaborador.edad.toUpperCase() + " " + colaborador.cargo.toUpperCase() + " " + colaborador.telefono.toUpperCase()
+      if (textoBusqueda.includes(busqueda.toUpperCase())) {
+        return true
+      }
+    }, busqueda)
+    setColaboradores([...resultadoBusqueda])
   }
 
   const eliminarColaborador = (colaborador) => {
     const colaboradorEliminado = colaboradores.filter((el) => el.id !== colaborador.id)
     setColaboradores(colaboradorEliminado)
+    setbusquedaColaboradores(colaboradorEliminado)
   }
   const obtenerId = () => {
     const listaId = colaboradores.map((el) => el.id)
@@ -55,7 +51,6 @@ function App() {
 
   return (
     <>
-
       <div className="container" id="principal">
         <div className="container" id="titulo">
           <Titulo titulo="Lista de Colaboradores" />
@@ -71,7 +66,6 @@ function App() {
           {alert.msg && <Alert color={alert.color} mensaje={alert.msg} />}
         </div>
       </div>
-
     </>
   )
 };

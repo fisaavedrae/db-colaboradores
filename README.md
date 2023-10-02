@@ -1,8 +1,14 @@
-# React + Vite
+# Desafio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En este desafío validaremos nuestros conocimientos en la renderización dinámica de componentes.
 
-Currently, two official plugins are available:
+Un cliente nos solicita una aplicación que muestre un listado de colaboradores a partir de unos datos entregados, donde adicionalmente se pueda agregar colaboradores nuevos y
+filtrar la lista de resultados a partir de una barra de búsqueda que depure en función de cualquier dato del colaborador.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Supuestos
+- Usé Bootstrap desde el CDN
+- En el formulario solo validé no vacios y numeros en edad y telefono, no valide cantidad de caracteres en el telefono
+- El buscador funciona al presionar una tecla
+
+- [Repo](https://github.com/fisaavedrae/db-colaboradores) 
+- [Live app](https://db-colaboradores.vercel.app/) 
