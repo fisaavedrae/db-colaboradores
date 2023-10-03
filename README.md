@@ -8,7 +8,7 @@ filtrar la lista de resultados a partir de una barra de búsqueda que depure en 
 # Supuestos
 - Usé Bootstrap desde el CDN
 - En el formulario solo validé no vacios y numeros en edad y telefono, no valide cantidad de caracteres en el telefono
-- El buscador funciona al presionar una tecla
+- El buscador funciona al presionar una tecla   
 
 - [Repo](https://github.com/fisaavedrae/db-colaboradores) 
 - [Live app](https://db-colaboradores.vercel.app/) 
